@@ -9,14 +9,24 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.create(post_params)
-        redirect_to post_path(@post)
+        if @post.valid?
+            redirect_to post_path(@post)
+        else
+            flash[:my_errors] = @post.errors.full_messages
+            render :new
+        end
     end
 
     def edit; end
 
     def update
         @post.update(post_params)
-        redirect_to post_path(@post)
+        if @post.valid?
+            redirect_to post_path(@post)
+        else
+            flash[:my_errors] = @post.errors.full_messages
+            render :edit
+        end
     end
     
     def like
@@ -27,7 +37,7 @@ class PostsController < ApplicationController
     private
     
     def post_params
-        params.require(:post).permit(:title, :content, :likes)
+        params.require(:post).permit(:title, :blogger_id, :destination_id, :content, :likes)
     end
     
     def find_post

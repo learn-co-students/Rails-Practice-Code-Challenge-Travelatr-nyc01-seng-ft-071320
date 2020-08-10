@@ -2,11 +2,11 @@
 
 
 Blogging Author: <%= link_to @post.blogger.name, blogger_path(@post.blogger)%><br>
-Blogging Author: <%= link_to @post.destination.name, blogger_path(@post.destination)%><br>
+Blogging Destination: <%= link_to @post.destination.name, blogger_path(@post.destination)%><br>
 
 Likes <%=@post.likes%>
 <%= button_to "Like Post", like_path(@post), method: :put, class: 'btn btn-info'%>
 
-<%=@post.content%><br>
+<%=@post.content%>
 
 
