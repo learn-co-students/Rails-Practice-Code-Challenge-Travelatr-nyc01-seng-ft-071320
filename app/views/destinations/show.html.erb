@@ -1,0 +1,17 @@
+<h1>Welcome to <%@destination.name%></h1>
+
+<p>Most Recent Post<br>
+<% posts_of_destination = @destination.posts.order("created_at DESC")%>
+<ul>
+<li><%= posts_of_destination.first.title if posts_of_destination.first%><br></li>
+<li><%= posts_of_destination.second.title if posts_of_destination.second%><br></li>
+<li><%= posts_of_destination.third.title if posts_of_destination.third%><br></li>
+<li><%= posts_of_destination.fourth.title if posts_of_destination.fourth%><br></li>
+<li><%= posts_of_destination.fifth.title if posts_of_destination.fifth%><br></li>
+</ul>
+<p>This destination has this most liked post:<br>
+<%posts_of_likes=@destination.posts{|post|post.likes} %>
+<%= link_to posts_of_likes.first.title, post_path(posts_of_likes.first) %>
+</p>
+
+<h4>The total age of the bloggers <%=bloggers=posts_of_destination.map{|p|p.blogger}.uniq.map{|blogger|blogger.age}.sum/(bloggers.length)%></h4>
