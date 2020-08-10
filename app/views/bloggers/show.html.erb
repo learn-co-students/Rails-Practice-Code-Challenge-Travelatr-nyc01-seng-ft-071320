@@ -1,0 +1,6 @@
+<h1> Blogger Page </h1>
+<p> Name: <%= @blogger.name %></p>
+<p> Age: <%= @blogger.age %></p>
+<p> Bio: <%= @blogger.bio %></p>
+<p> Total Likes: <%= @blogger.total_likes %></p>
+<p> Featured Page: <%= link_to @blogger.most_liked_post.title, post_path(@blogger.most_liked_post) %></p>
