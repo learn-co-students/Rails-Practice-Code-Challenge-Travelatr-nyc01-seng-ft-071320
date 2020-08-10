@@ -4,9 +4,14 @@ class Blogger < ApplicationRecord
 
     validates :name, uniqueness: true
     validates :age, numericality: { greater_than: 0 }
-    validates :bio, length: { maximum: 30 }
+    validates :bio, length: { minimum: 30 }
 
     def total_likes
         posts.inject(0) { |sum, post| sum + post.likes }
     end
+
+    def most_liked_post
+        posts.max_by { |post| post.likes }
+    end
+
 end
