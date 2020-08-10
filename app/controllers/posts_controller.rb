@@ -6,8 +6,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def show
-  end
+  def show;end
 
   def new
     @post = Post.new
@@ -15,14 +14,26 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
+    if @post.valid?
+      # byebug
+      redirect_to post_path(@post)
+    else
+      flash[:my_errors]=@post.errors.full_messages
+      redirect_to new_post_path
+    end
   end
 
   def edit
   end
 
   def update
-    @post.update(post_params)
+    @post.like +=1
+    if @post.update(post_params)
     redirect_to post_path(@post)
+    else 
+      flash[:my_errors]=@post.errors.full_messages
+      redirect_to edit_post_path
+    end
   end
 
   def destroy
@@ -37,7 +48,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:name, :bio, :age)
+    params.require(:post).permit(:title, :content, :likes,:blogger_id,:destination_id)
   end
 
 end
+

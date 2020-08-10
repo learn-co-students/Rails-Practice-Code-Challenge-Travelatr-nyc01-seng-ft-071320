@@ -14,4 +14,4 @@
 <%= link_to posts_of_likes.first.title, post_path(posts_of_likes.first) %>
 </p>
 
-<h4>The total age of the bloggers <%=bloggers=posts_of_destination.map{|p|p.blogger}.uniq.map{|blogger|blogger.age}.sum/(bloggers.length)%></h4>
+<h4>Average <%=posts_of_destination.map{|p|p.blogger}.uniq.map{|blogger|blogger.age}.sum/(posts_of_likes.count)%></h4>

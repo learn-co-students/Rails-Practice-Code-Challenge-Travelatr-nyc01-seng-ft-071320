@@ -7,7 +7,7 @@
 <p>This is the most liked article of our blogger:<br>
 <%= link_to top.title, post_path(top)%>
 </p>
-<p>This Blogger has this many lies:<br>
+<p>This Blogger has this many likes:<br>
 <%bloggers_likes=post_of_blogger.map{|post|post.likes}%>
 <%= bloggers_likes.inject(0){|sum,x| sum + x} %>
 </p>

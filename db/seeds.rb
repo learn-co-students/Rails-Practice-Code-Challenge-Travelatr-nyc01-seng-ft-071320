@@ -11,29 +11,37 @@ Blogger.destroy_all
 Post.destroy_all
 
 30.times do 
+  num=rand(10000..20000)
+  num1=rand(20000..30000)
   Destination.create({
-    name: Faker::GameOfThrones.city,
-    country: Faker::Address.country
+    name: "name#{num}",
+    country: "name#{num1}"
   })
 end
 
 10.times do
   num=rand(18..67)
+  num2=rand(10000..20000)
+  num1=rand(20000..30000)
   blogger = Blogger.create({
-    name: Faker::Name.name,
-    bio: Faker::Hipster.paragraph,
+    name: "nameasdfdsfji#{num1}",
+    bio: "biopioewsafksdj#{num2}ssssssfsafdsfdsafdsaifhdsdsfadskjfnadsfadsfjdsafsdafdsfsdfds",
     age: num
   })
 end
 
   50.times do 
     num=rand(1..1000)
-    Post.create({
-      title: Faker::Hipster.sentence(3),
-      content: Faker::Hipster.paragraphs(4),
+    num2=rand(10000..20000)
+    num1=rand(20000..30000)
+    Post.create({title: "title#{num2}",
+      content: "content#{num1}sssskkkkasfkdsa;lfndasfkdsnafkaew;foiesdafqwertyuioppoiuytrewesadfghjkmnbvcxzcvbfdghwfaewofjoewifwe;aeiwfwe;oifewafajweo;fiwejf",
       likes: num,
       blogger_id: Blogger.all.sample.id,
       destination_id: Destination.all.sample.id
     })
   end
 
+  p Destination.count
+  p Blogger.count
+  p Post.count

@@ -1,3 +1,8 @@
-<h2><%= @post.title %></h2>
+<h2>Title<%= @post.title %></h2>
+<h3>Content<%=@post.content%></h3>
+<p>Total Likes <%=@post.likes%></p>
 
-<%= button_to "Edit Post", edit_post_path(@post) %>
+<%= link_to @post.blogger.name, blogger_path(@post.blogger) %><br>
+<%= link_to @post.destination.name, destination_path(@post.destination) %>
+
+<%= button_to "Add Like", post_like_path(@post), method: :update%>
