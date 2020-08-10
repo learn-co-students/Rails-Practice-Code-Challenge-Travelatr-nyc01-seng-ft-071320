@@ -18,14 +18,20 @@ class PostsController < ApplicationController
         @post.update(post_params)
         redirect_to post_path(@post)
     end
-
+    
+    def like
+        @post.increment!(:likes)
+        redirect_to post_path(@post)
+    end
+    
     private
-
+    
     def post_params
         params.require(:post).permit(:title, :content, :likes)
     end
-
+    
     def find_post
         @post = Post.find(params[:id])
     end
+
 end

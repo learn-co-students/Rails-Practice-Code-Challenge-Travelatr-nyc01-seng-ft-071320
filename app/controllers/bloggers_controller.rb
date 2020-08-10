@@ -10,7 +10,12 @@ class BloggersController < ApplicationController
 
     def create
         @blogger = Blogger.create(blogger_params)
-        redirect_to blogger_path(@blogger)
+        if @blogger.valid?
+            redirect_to blogger_path(@blogger)
+        else
+            flash[:my_errors] = @blogger.errors.full_messages
+            render :new
+        end
     end
 
     private
