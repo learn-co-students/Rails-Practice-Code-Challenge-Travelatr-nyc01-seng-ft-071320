@@ -1,0 +1,15 @@
+<h1>Post Details</h1>
+
+<h3>Title: <%= @post.title%> </h3>
+<br>
+<br>
+<br>
+
+<label>Content: </label>
+<p><%= @post.content%></p>
+
+
+<%= button_to "like", "/posts/#{@post.id}/like", method: :patch %>
+
+
+<p><%= @post.likes %></p>     
