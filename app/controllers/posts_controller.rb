@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if params[:like]
+      @post.likes += 1
+      @post.save
+    end
   end
 
   def create
