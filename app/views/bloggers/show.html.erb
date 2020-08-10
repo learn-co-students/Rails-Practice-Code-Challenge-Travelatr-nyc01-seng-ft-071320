@@ -1,0 +1,13 @@
+<h1>Blogger Information:</h1>
+
+<h3> <%= @blogger.name %></h3>
+
+
+<h3>Total Likes: <%= @blogger.like_count %></h3>
+
+<% @blogger.posts.each do |post| %>
+    <%= post.title %>
+<%end%>
+
+
+ 
