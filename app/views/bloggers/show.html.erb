@@ -1,0 +1,19 @@
+<h1>Blogger Show Page</h1>
+
+    <%=@blogger.name%><br>
+    <%=@blogger.age%><br>
+    <%=@blogger.bio%><br>
+<% posts = @blogger.posts.select{|post| post.likes != nil}%>
+My total likes: <%=posts.map{|post| post.likes}.sum%>
+
+My most liked post: 
+<%most_liked_post = posts.max_by{|post| post.likes}%>
+<%=link_to most_liked_post.title, post_path(most_liked_post) %>
+
+My Top 5 Destinations
+
+<ol>
+<% @blogger.most_written_about_destinations.each do |dest| %>
+    <li><%= dest.name%></li>
+<% end %>
+</ol>
