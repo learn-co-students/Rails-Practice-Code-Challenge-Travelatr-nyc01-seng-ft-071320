@@ -1,34 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-30.times do 
-  Destination.create({
-    name: Faker::GameOfThrones.city,
-    country: Faker::Address.country
-  })
-end
-
-
+p Destination.destroy_all
+p Blogger.destroy_all
+p Post.destroy_all
+puts "start"
 10.times do
-  blogger = Blogger.create({
-    name: Faker::Name.name,
-    bio: Faker::Hipster.paragraph,
-    age: (13..100).to_a.sample
-  })
-
-  (2..6).to_a.sample.times do 
-    Post.create({
-      title: Faker::Hipster.sentence(3),
-      content: Faker::Hipster.paragraphs(4),
-      likes: 0,
-      blogger: blogger,
-      destination: Destination.all.sample
-    })
-  end
+Destination.create({
+name: Faker::Address.city,
+country: Faker::Address.country
+})
 end
+5.times do
+blogger = Blogger.create({
+name: Faker::Name.unique.name,
+bio: Faker::Hipster.paragraph,
+age: (13..100).to_a.sample
+})
+end
+60.times do
+num=rand(50..100)
+Post.create(title: Faker::Address.community, content: Faker::Hipster.paragraph, likes: num, blogger_id: Blogger.all.sample.id, destination_id: Destination.all.sample.id)
+end
+p Destination.count
+p Blogger.count
+p Post.count
+puts "done"
