@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20180815094403) do
 
   create_table "bloggers", force: :cascade do |t|
     t.string "name"
-    t.string "bio"
+    t.text "bio"
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
