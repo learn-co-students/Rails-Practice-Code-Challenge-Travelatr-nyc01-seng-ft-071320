@@ -1,14 +1,2 @@
-<h1>Create New Post</h1>
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <%= f.label :likes %>
-  <%= f.number_field :likes %>
-  <%= f.label :blogger_id %>
-  <%= f.collection_select :blogger_id, Blogger.all, :id, :name %>
-  <%= f.label :destination_id %>
-  <%= f.collection_select :destination_id, Destination.all, :id, :name %>
-  <%= f.submit %>
-<% end %>
+<h1>Edit New Post</h1>
+<%= render 'form' %>

@@ -1,6 +1,12 @@
-<h1> Blogger Page </h1>
-<p> Name: <%= @blogger.name %></p>
+<h1>Blogger Profile</h1>
+<h2 style="font-style: italic"><%= @blogger.name %></h2>
 <p> Age: <%= @blogger.age %></p>
 <p> Bio: <%= @blogger.bio %></p>
 <p> Total Likes: <%= @blogger.total_likes %></p>
 <p> Featured Page: <%= link_to @blogger.most_liked_post.title, post_path(@blogger.most_liked_post) %></p>
+<p>Most written destination:</p>
+<ul>
+  <% @blogger.five_most_written_destinations.each do |destination| %>
+    <li><%= link_to destination.name, destination_path(destination) %></li>
+  <% end %>
+</ul>

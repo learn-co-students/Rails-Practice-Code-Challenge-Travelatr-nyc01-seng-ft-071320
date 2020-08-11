@@ -1,23 +1,24 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update]
+  before_action :find_post, only: [:like, :show, :edit, :update]
 
   def new
     @post = Post.new
   end
 
-  def show
-    if params[:like]
-      @post.likes += 1
-      @post.save
-    end
-  end
+  def like
+    @post.increment!(:likes)
 
-  def create
-    @post = Post.create(post_params)
     redirect_to post_path(@post)
   end
 
-  def edit
+  def create
+    @post = Post.new(post_params)
+
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
   end
   
   def update
