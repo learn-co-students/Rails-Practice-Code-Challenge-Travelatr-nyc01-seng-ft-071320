@@ -5,4 +5,4 @@
 <%= link_to @post.blogger.name, blogger_path(@post.blogger) %><br>
 <%= link_to @post.destination.name, destination_path(@post.destination) %>
 
-<%= button_to "Add Like", post_like_path(@post), method: :update%>
+<%= button_to "Add Like", post_like_path(@post), method: :put%>

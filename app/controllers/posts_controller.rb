@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :find_post, only: [:show, :edit, :update, :destroy,:like]
 
   def index
     @posts = Post.all
@@ -27,7 +27,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.like +=1
     if @post.update(post_params)
     redirect_to post_path(@post)
     else 
@@ -39,6 +38,13 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to post_path(@posts)
+  end
+
+  def like
+    @post.likes=@post.likes+1
+    # byebug
+    @post.save
+    redirect_to post_path(@post)
   end
 
   private

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :bloggers
   resources :posts
   resources :destinations
-  puts "/post/:id/like", to:'post#like', as: 'post_like'
+  put "/posts/:id/like", to:'posts#like', as: 'post_like'
 
 end
